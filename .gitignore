@@ -1,3 +1,5 @@
 venv
 cache
 package
+__pycache__
+IntlWeather.egg-info
