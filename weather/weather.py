@@ -13,9 +13,10 @@ class Weather:
         self._lat = lat
         self._lon = lon
         if cache_dir is None:
-            cache_dir = Path('.')
+            self._cache_dir = Path('.')
         else:
-            cache_dir = cache_dir
+            self._cache_dir = cache_dir
+        print(f'self._cache_dir: {self._cache_dir}')
 
         self._metadata = Metadata()
 
@@ -29,9 +30,12 @@ class Weather:
         """
         url = f'https://api.weather.gov/points/{self._lat},{self._lon}'
 
+        zone_json_file = self._cache_dir.joinpath(f'/zone_{self._lat}_{self._lon}.json')
+        if zone_json_file.exists():
+
         found_in_cache = False
         if use_cache:
-            data = Path(f'./cache/zone_{self._lat}_{self._lon}.json').read_text()
+            data = .read_text()
             data = json.loads(data)
             found_in_cache = True
         if use_cache is False and found_in_cache is False:
@@ -42,9 +46,9 @@ class Weather:
             data_tab = json.dumps(data, indent=4)
 
             if record:
-                if Path('./cache').exists() is False:
-                    Path('./cache').mkdir()
-                Path(f'./cache/zone_{self._lat}_{self._lon}.json').write_text(data_tab)
+                if self._cache_dir.exists() is False:
+                    self._cache_dir.mkdir()
+                self._cache_dir.joinpath(f'/zone_{self._lat}_{self._lon}.json').write_text(data_tab)
 
         self._metadata.city = data['properties']['relativeLocation']['properties']['city']
         self._metadata.state = data['properties']['relativeLocation']['properties']['state']

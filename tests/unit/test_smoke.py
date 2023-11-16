@@ -1,6 +1,7 @@
 
 #from weather.util import Util
 #   ut = Util()
+from pathlib import Path
 from weather.weather import Weather
 import tests.data
 from importlib.resources import files
@@ -25,6 +26,7 @@ def test_get_zone():
     lon = LON_FLUSHING
     print(f'{tests.data}')
     print(f'{files(tests.data)}')
+    cache_dir = Path(files(tests.data))
     # WHEN
     _weather = Weather(lat=lat, lon=lon, cache_dir=cache_dir)
     _weather.load_metadata(use_cache=True)
