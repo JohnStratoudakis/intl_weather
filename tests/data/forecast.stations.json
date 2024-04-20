@@ -1,8 +1,0 @@
-{
-    "correlationId": "20bf7e05",
-    "title": "Not Found",
-    "type": "https://api.weather.gov/problems/NotFound",
-    "status": 404,
-    "detail": "'/gridpoints/OKX/40,38/forecast/stations' is not a valid resource path",
-    "instance": "https://api.weather.gov/requests/20bf7e05"
-}
